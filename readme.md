@@ -19,11 +19,14 @@ This script is intended to run locally in a terminal. Essentially, OBS websocket
 ## Setup
 You'll need the [discordpy](https://discordpy.readthedocs.io/en/stable/index.html) and [obs-web-socket-py](https://github.com/Elektordi/obs-websocket-py) python libraries.
 
-You'll also need a [Discord bot](https://discordpy.readthedocs.io/en/stable/discord.html#discord-intro).
+You'll also need a [Discord bot](https://discordpy.readthedocs.io/en/stable/discord.html#discord-intro) in a text server.
 
-Add your OBS WSS info and Discord bot key to the settings.json file. AGAIN, this information should remain SECURE. That is YOUR RESPONSIBILITY.
+### Connect to OBS and Discord
+Add OBS WSS info and Discord bot key to **settings.json**. This information should remain SECURE.
 
+### Add Triggers
 Add any text commands you want to monitor to the triggers.json file.
+- **key**: The text that will trigger a command (one word).
 - **scene**: The scene name
 - **id**: The ItemID for the source you want to control.
 - **message**: If you want the bot to state a message, add it here.
@@ -31,10 +34,7 @@ Add any text commands you want to monitor to the triggers.json file.
     - activate (turn on)
     - deactivate (turn off) 
     - toggle (switch state)
-- **reset**: If True, the script will toggle the source if the state matches the desired state, then activate / de-activate as intended. 
-    -(e.g. if you want the command to turn a source on, the Reset command will test to see if it's already on. If it's on, it will turn off before activating  again.)
-
-Creating and inviting a discord bot is outside the scope of this readme.
+- **reset**: If True, the script will toggle the source before activation. (Adds a slight delay to activation)
 
 ## Disclaimers
 This script is provided completely without license, warranty, or guarantee. You are solely responsible for reviewing and understanding any software or code downloaded or run on any machine or service that you control.
