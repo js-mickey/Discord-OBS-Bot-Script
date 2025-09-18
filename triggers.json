@@ -1,0 +1,23 @@
+{
+    "/roll": {
+        "scene": "Scene",
+        "id": 61,
+        "message": "Rollin'",
+        "command": "activate",
+        "reset": "True"
+    },
+    "/status": {
+        "scene": "Scene",
+        "id": 57,
+        "message": "Status Screen",
+        "command": "toggle",
+        "reset": "False"
+    },
+    "/clear": {
+        "scene": "Scene",
+        "id": 61,
+        "message": "Un-Rollin",
+        "command": "deactivate",
+        "reset": "False"
+    }
+}
