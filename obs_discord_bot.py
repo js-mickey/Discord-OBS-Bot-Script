@@ -17,6 +17,10 @@ host = PREFS["ip"]
 port = PREFS["port"]
 password = PREFS["password"]
 
+# WSS Connection Behavior
+boot_sock = bool(PREFS["open_WSS_at_run"])
+maintain_sock = bool(PREFS["maintain_WSS"])
+
 # Discord bot key
 key = PREFS["auth"]
 
@@ -35,6 +39,12 @@ def start_OBS_Connection():
     WSS_OBS = obsws(host, port, password)
     WSS_OBS.connect()
     WSSINIT = True
+    return WSS_OBS
+
+def close_OBS_Connection():
+    global WSSINIT
+    WSS_OBS.disconnect()
+    WSSINIT = False
     return WSS_OBS
 
 def activate_OBS_Source(scene, source, visibility, reset):
@@ -70,12 +80,18 @@ async def on_message(message):
     TEXT = message.content.split(" ")[0]
     MYCOMMAND = KEYS.get(TEXT, False)
     if MYCOMMAND != False: 
-        await message.channel.send(MYCOMMAND.get("message"))
+        MESSAGE = MYCOMMAND.get("message")
         COMMAND = COMMAND_DICT.get(MYCOMMAND.get("command", "activate"), True)
         SCENE = MYCOMMAND.get("scene")
         SOURCE = MYCOMMAND.get("id")
         RESET = MYCOMMAND.get("reset")
-        print(SCENE, SOURCE, COMMAND, RESET)
-        activate_OBS_Source(SCENE, SOURCE, COMMAND, RESET)
+        if MESSAGE:
+            await message.channel.send(MESSAGE)
 
+        activate_OBS_Source(SCENE, SOURCE, COMMAND, RESET)
+        if not maintain_sock:
+            close_OBS_Connection()
+
+if boot_sock:
+    WSS_OBS = start_OBS_Connection() 
 client.run(key)
