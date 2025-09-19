@@ -1,10 +1,10 @@
 # Discord-OBS Bot Interface
 
-This is a simple python script to interface a discord chat bot with OBS via a local websocket (WSS). Currently it can activate or deactivate sources.
+This is a simple python script to interface a discord chat bot with OBS via a local websocket (WSS). Currently it test user roles, activate or deactivate sources, and send Discord messages.
 
 ## Caveats
 
-This script is meant for use with a small, private Discord group. There's no role handling, so it shouldn't be deployed when there is the opportunity for public mischief.
+This script is meant for use with a small, private Discord group.
 
 This script is meant to run locally. **Any security is your responsibility.**
 
@@ -35,15 +35,19 @@ Add OBS WSS info and Discord bot key to **settings.json**. This information shou
 
 Add any text commands you want to monitor to the triggers.json file.
 
+**Required Parameters**
 - **key**: The text that will trigger a command (one word).
 - **scene**: The scene name
 - **id**: The ItemID for the source you want to control (see below).
-- **message**: If you want the bot to state a message, add it here. Leave blank for no message.
 - **command**: Choose one of three options:
     - activate (turn on)
     - deactivate (turn off) 
     - toggle (switch state)
+
+**Optional Parameters**
 - **reset**: If True, the script will toggle the source before activation. (Adds a slight delay to activation)
+- **min_user_role**: The name (in text) of the minimum user roll permitted to perform this action. If blank, defaults to all users.
+- **message**: If you want the bot to state a message, add it here. Leave blank for no message.
 
 ### How to Find Item IDs
 
