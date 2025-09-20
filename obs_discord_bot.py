@@ -56,7 +56,7 @@ def activate_OBS_Source(scene, source, visibility, reset):
         visibility = not GetItemStatus(source)
 
     # If Reset is true, test status and toggle
-    if reset == "True":
+    if reset:
         ResetItemStatus(scene, source, visibility)
 
     WSS_OBS.call(requests.SetSceneItemEnabled(sceneName=scene, sceneItemId=source, sceneItemEnabled=visibility))
@@ -74,17 +74,48 @@ def GetItemStatus(source):
     ITEMSTATUS = CALLRETURN.get("datain").get("sceneItemEnabled")
     return ITEMSTATUS
 
+def TestPermissions(message, min_role_name):
+    #Return True if no defined role
+    if min_role_name == False:
+        return True
+
+    # Find minimum role in Discord Guild
+    min_role = discord.utils.get(message.guild.roles, name=min_role_name)
+    if min_role == None:
+        return False
+    
+    # Get user's max role
+    user_role = message.author.roles[-1]
+
+    # Test role against permission
+    if user_role  >= min_role:
+        return True
+    else:
+        return False
+    
 ## Listen for Discord Events
 @client.event
 async def on_message(message):
+    #Prevent bot self-reply
+    if message.author == client.user:
+        return
+    
+    #Get first message key
     TEXT = message.content.split(" ")[0]
+
+    # Check if key exists in command list, proceed if so.
     MYCOMMAND = KEYS.get(TEXT, False)
     if MYCOMMAND != False: 
-        MESSAGE = MYCOMMAND.get("message")
+        # Test Permissions
+        PERMITTED = TestPermissions(message, MYCOMMAND.get("min_user_role", False))
+        if not PERMITTED:
+            return
+        
+        MESSAGE = MYCOMMAND.get("message", False)
         COMMAND = COMMAND_DICT.get(MYCOMMAND.get("command", "activate"), True)
         SCENE = MYCOMMAND.get("scene")
         SOURCE = MYCOMMAND.get("id")
-        RESET = MYCOMMAND.get("reset")
+        RESET = MYCOMMAND.get("reset", False)
         if MESSAGE:
             await message.channel.send(MESSAGE)
 

@@ -2,22 +2,22 @@
     "/roll": {
         "scene": "Scene",
         "id": 61,
-        "message": "Rollin'",
         "command": "activate",
-        "reset": "True"
+        "reset": true,
+        "message": "Rollin'"
+
     },
     "/status": {
         "scene": "Scene",
         "id": 57,
-        "message": "Status Screen",
-        "command": "toggle",
-        "reset": "False"
+        "command": "toggle"
     },
     "/clear": {
         "scene": "Scene",
         "id": 61,
-        "message": "Un-Rollin",
         "command": "deactivate",
-        "reset": "False"
+        "message": "Un-Rollin",
+        "min_user_role": "Server Admin",
+        "reset": false
     }
 }
