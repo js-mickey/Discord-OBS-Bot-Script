@@ -11,13 +11,13 @@
         "scene": "Scene",
         "id": 57,
         "command": "toggle",
-        "reset": false
     },
     "/clear": {
         "scene": "Scene",
         "id": 61,
         "command": "deactivate",
         "message": "Un-Rollin",
-        "min_user_role": "Server Admin"
+        "min_user_role": "Server Admin",
+        "reset": false
     }
 }
