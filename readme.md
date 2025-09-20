@@ -1,6 +1,6 @@
 # Discord-OBS Bot Interface
 
-This is a simple python script to interface a discord chat bot with OBS via a local websocket (WSS). Currently it test user roles, activate or deactivate sources, and send Discord messages.
+This is a simple python script to interface a discord chat bot with OBS via a local websocket (WSS). Currently it can test user roles, activate or deactivate sources, and send Discord messages.
 
 ## Caveats
 
