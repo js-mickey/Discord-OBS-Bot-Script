@@ -10,7 +10,7 @@ This script is meant to run locally. **Any security is your responsibility.**
 
 ## Use Cases
 
-The bot monitors Discord chat and changes scene activation based on the first word in messages.
+The bot monitors Discord chat and changes source activation based on the first word in messages.
 
 Uses can include:
 
