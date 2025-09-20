@@ -10,7 +10,7 @@
     "/status": {
         "scene": "Scene",
         "id": 57,
-        "command": "toggle",
+        "command": "toggle"
     },
     "/clear": {
         "scene": "Scene",
