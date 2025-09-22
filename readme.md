@@ -28,15 +28,15 @@ Requires Python and the [discordpy](https://discordpy.readthedocs.io/en/stable/i
 
 Bring your own [Discord Bot](https://discordpy.readthedocs.io/en/stable/discord.html#discord-intro) and invite it into a server with text chat.
 
-The Discord bot requires message read and write permissions ***(a.k.a. Message Content Intent)***.
+The Discord bot requires message read and write permissions *(a.k.a. Message Content Intent)*.
 
 ### Enter OBS and Discord Bot Information
 
-Add OBS WSS info and Discord bot key to **settings.json**. This information should remain SECURE.
+Add OBS WSS info and Discord bot key to *settings.json*. This information should remain SECURE.
 
 ### Add Triggers
 
-Add any text commands you want to monitor to **triggers.json**.
+Add any text commands you want to monitor to *triggers.json*.
 
 **Required Parameters**
 - **key**: The text that will trigger a command (one word).
@@ -44,14 +44,14 @@ Add any text commands you want to monitor to **triggers.json**.
 
 **Source Control Parameters**
 
-These are required to control Sources. Remove them to switch scenes instead.
+These parameters are required to control Sources. Remove them to switch scenes instead.
 
 - **id**: The ItemID for the source you want to control (see below).
 - **command**: Choose one of three options:
-    - activate (turn on)
-    - deactivate (turn off)
-    - toggle (switch state)
-    ***Defaults to "Activate" if left blank.***
+    - activate *(turn on)*
+    - deactivate *(turn off)*
+    - toggle *(switch state)*
+      *Defaults to "Activate" if left blank.*
 
 **Optional Parameters**
 
@@ -114,10 +114,10 @@ This trigger switches to "New_Scene" when a "Server Admin" or higher types "/swi
 
 ## Advanced Settings
 
-**settings.json** includes these other settings:
+*settings.json* includes these other settings:
 
-- **open_WSS_at_run**: If true, boots WSS on script boot. If false, WSS connects when first command runs. ***Default: True***
-- **maintain_WSS**: If true, keeps WSS connected. If false, WSS disconnects after each command (may increase latency). ***Default: True***
+- **open_WSS_at_run**: If true, boots WSS on script boot. If false, WSS connects when first command runs. *Default: True*
+- **maintain_WSS**: If true, keeps WSS connected. If false, WSS disconnects after each command (may increase latency). *Default: True*
 
 ## Disclaimers
 
