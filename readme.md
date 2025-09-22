@@ -43,7 +43,9 @@ Add any text commands you want to monitor to **triggers.json**.
 - **scene**: The scene name to control.
 
 **Source Control Parameters**
+
 These are required to control Sources. Remove them to switch scenes instead.
+
 - **id**: The ItemID for the source you want to control (see below).
 - **command**: Choose one of three options:
     - activate (turn on)
@@ -52,6 +54,7 @@ These are required to control Sources. Remove them to switch scenes instead.
     ***Defaults to "Activate" if left blank.***
 
 **Optional Parameters**
+
 - **reset**: If True, the script will toggle the source before activation. (Adds a slight delay to activation)
 - **min_user_role**: The name (in text) of the minimum user roll permitted to perform this action. If blank, defaults to all users.
 - **message**: If you want the bot to state a message, add it here. Leave blank for no message.
