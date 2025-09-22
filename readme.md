@@ -30,11 +30,11 @@ Bring your own [Discord Bot](https://discordpy.readthedocs.io/en/stable/discord.
 
 The Discord bot requires message read and write permissions ***(a.k.a. Message Content Intent)***.
 
-### Connect to OBS and Discord
+### Enter OBS and Discord Bot Information
 
 Add OBS WSS info and Discord bot key to **settings.json**. This information should remain SECURE.
 
-#### Add Triggers
+### Add Triggers
 
 Add any text commands you want to monitor to **triggers.json**.
 
@@ -56,7 +56,7 @@ These are required to control Sources. Remove them to switch scenes instead.
 - **min_user_role**: The name (in text) of the minimum user roll permitted to perform this action. If blank, defaults to all users.
 - **message**: If you want the bot to state a message, add it here. Leave blank for no message.
 
-#### Run
+### Run
 
 Make sure your bot is in Discord and you have OBS up with WSS enabled.
 
@@ -103,14 +103,15 @@ This trigger switches to "New_Scene" when a "Server Admin" or higher types "/swi
 ```json
 {
     "/switch": {
-        "scene": "New_Scene"
+        "scene": "New_Scene",
+        "min_user_role": "Server Admin"
     }
 }
 ```
 
 ## Advanced Settings
 
-**settings.json** includes these other settings.
+**settings.json** includes these other settings:
 
 - **open_WSS_at_run**: If true, boots WSS on script boot. If false, WSS connects when first command runs. ***Default: True***
 - **maintain_WSS**: If true, keeps WSS connected. If false, WSS disconnects after each command (may increase latency). ***Default: True***
