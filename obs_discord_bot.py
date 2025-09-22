@@ -47,6 +47,12 @@ def close_OBS_Connection():
     WSSINIT = False
     return WSS_OBS
 
+def activate_OBS_Scene(scene):
+    global WSS_OBS
+    if WSSINIT == False:
+        WSS_OBS = start_OBS_Connection()
+    WSS_OBS.call(requests.SetCurrentProgramScene(sceneName=scene))
+
 def activate_OBS_Source(scene, source, visibility, reset):
     global WSS_OBS
     if WSSINIT == False:
@@ -111,18 +117,28 @@ async def on_message(message):
         if not PERMITTED:
             return
         
+        #Load dictionary commands
         MESSAGE = MYCOMMAND.get("message", False)
         COMMAND = COMMAND_DICT.get(MYCOMMAND.get("command", "activate"), True)
         SCENE = MYCOMMAND.get("scene")
-        SOURCE = MYCOMMAND.get("id")
+        SOURCE = MYCOMMAND.get("id", False)
         RESET = MYCOMMAND.get("reset", False)
+
+        # Send Discord reply, if one is defined.
         if MESSAGE:
             await message.channel.send(MESSAGE)
 
-        activate_OBS_Source(SCENE, SOURCE, COMMAND, RESET)
+        # Determine whether it is a Scene or Source command.
+        if not SOURCE:
+            activate_OBS_Scene(SCENE)
+        else:
+            activate_OBS_Source(SCENE, SOURCE, COMMAND, RESET)
+        
+        #If set to disconnect, disconnect.    
         if not maintain_sock:
             close_OBS_Connection()
 
 if boot_sock:
     WSS_OBS = start_OBS_Connection() 
 client.run(key)
+

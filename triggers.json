@@ -1,23 +1,33 @@
 {
-    "/roll": {
-        "scene": "Scene",
-        "id": 61,
-        "command": "activate",
-        "reset": true,
-        "message": "Rollin'"
-
+    "/switch_scene": {
+        "scene": "Other Scene"
     },
-    "/status": {
+    "/toggle_source": {
         "scene": "Scene",
         "id": 57,
         "command": "toggle"
     },
-    "/clear": {
+    "/activate_source": {
+        "scene": "Scene",
+        "id": 61,
+        "command": "activate",
+        "reset": true,
+        "message": "Activatin'"
+    },
+    "/clear_source": {
         "scene": "Scene",
         "id": 61,
         "command": "deactivate",
-        "message": "Un-Rollin",
+        "message": "Un-Activatin'",
         "min_user_role": "Server Admin",
+        "reset": false
+    },
+    "/your_key_here": {
+        "scene": "Your scene name here",
+        "id": 42,
+        "command": "deactivate",
+        "message": "Optional message'",
+        "min_user_role": "Optional minimum permissions",
         "reset": false
     }
 }
